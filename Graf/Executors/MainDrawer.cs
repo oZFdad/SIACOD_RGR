@@ -1,21 +1,22 @@
+using System;
 using System.Collections.Generic;
 using Graf.Models;
 
 namespace Graf.Executors
 {
-    public class MainDrawer
+    internal class MainDrawer
     {
         private List<CircleDrawer> _circleList = new List<CircleDrawer>();
         private List<LineDrawer> _lineList = new List<LineDrawer>();
         private List<CircleDrawer> _checkedVertex = new List<CircleDrawer>();
         private Graf _graf;
 
-        public MainDrawer(Graf graf)
+        internal MainDrawer(Graf graf)
         {
             _graf = graf;
         }
 
-        public bool CheckBoardCircle(GrafData data)
+        internal bool IsCheckBoardCircle(GrafData data)
         {
             foreach (var circle in _circleList)
             {
@@ -26,21 +27,33 @@ namespace Graf.Executors
                 {
                     circle.Check = !circle.Check;
                     data.CheckCircle = !data.CheckCircle;
+                    return true;
                 }
-
-                return true;
             }
 
             return false;
         }
 
-        public void AddEdge(GrafData data)
+        internal void Draw(GrafData data)
+        {
+            foreach (var line in _lineList)
+            {
+                line.Draw(data);
+            }
+            foreach (var circle in _circleList)
+            {
+                circle.Draw(data);
+            }
+        }
+
+        internal void AddVertex(GrafData data)
         {
             var num = _graf.AddVertex();
             var vertex = new CircleDrawer(num,data.ClicPoint);
+            _circleList.Add(vertex);
         }
 
-        public void AddVertex(GrafData data)
+        internal void AddEdge(GrafData data)
         {
             foreach (var circle in _circleList)
             {
@@ -55,11 +68,26 @@ namespace Graf.Executors
                 if (circle.Check && circle!=_checkedVertex[0])
                 {
                     _checkedVertex.Add(circle);
-                    _graf.AddEdge(_checkedVertex[0].Number,_checkedVertex[1].Number,data.Weight);
+                    _graf.AddEdge(_checkedVertex[0].Number,_checkedVertex[1].Number,data.Weight, data.CheckEdgeRoute);
+                    _lineList.Add(new LineDrawer(_checkedVertex[0].Point,_checkedVertex[1].Point,data.Weight));
                     _checkedVertex.Clear();
+                    foreach(var circle2 in _circleList)
+                    {
+                        circle2.Check = false;
+                    }
                     return;
                 }
             }
+        }
+
+        internal void ClearChekedList()
+        {
+            _checkedVertex.Clear();
+        }
+
+        internal void ClearLineList()
+        {
+            _lineList.Clear();
         }
     }
 }

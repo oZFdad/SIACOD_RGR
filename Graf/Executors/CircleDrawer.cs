@@ -1,42 +1,59 @@
+using Graf.Models;
 using System.Drawing;
 
 namespace Graf.Executors
 {
-    public class CircleDrawer
+    internal class CircleDrawer
     {
         private int _number;
         private Point _point;
         private int _r = 30;
         private bool _check = false;
 
-        public Point Point
+        internal Point Point
         {
             get => _point;
             set => _point = value;
         }
 
-        public int R
+        internal int R
         {
             get => _r;
             set => _r = value;
         }
 
-        public bool Check
+        internal bool Check
         {
             get => _check;
             set => _check = value;
         }
 
-        public int Number
+        internal int Number
         {
             get => _number;
             set => _number = value;
         }
 
-        public CircleDrawer(int number, Point point)
+        internal CircleDrawer(int number, Point point)
         {
             _number = number;
             _point = point;
+        }
+
+        internal void Draw(GrafData data)
+        {
+            var rect = new Rectangle(_point.X - R / 2, _point.Y - R / 2, R, R);
+            var pen = new Pen(Color.Red);
+            if (_check)
+            {
+                pen = new Pen(Color.Red, 3);
+            }
+            data.FormGraphics.DrawEllipse(pen, rect);
+
+            var brush = new SolidBrush(Color.Blue);
+            var fontFamily = new FontFamily("Comic Sans MS");
+            var font = new Font(fontFamily, 12, FontStyle.Regular, GraphicsUnit.Pixel);
+            data.FormGraphics.DrawString(Number.ToString(), font, brush, Point);
         }
     }
 }

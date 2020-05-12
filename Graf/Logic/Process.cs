@@ -1,10 +1,11 @@
+using Graf.Algoritms;
 using Graf.Executors;
 using Graf.Models;
 
 namespace Graf.Logic
-{/// <summary>
- /// Класс отвечает за весь логический процесс в библиотеке
- /// </summary>
+{    /// <summary>
+     /// Класс отвечает за весь логический процесс в библиотеке
+     /// </summary>
     public class Process
     {
         private MainDrawer _mainDrawer;
@@ -15,13 +16,13 @@ namespace Graf.Logic
             _graf = new Graf();
             _mainDrawer = new MainDrawer(_graf);
         }
-/// <summary>
-/// Обработка события клика, выделение, рисование вершин и ребер
-/// </summary>
-/// <param name="data">Модель данных</param>
+        /// <summary>
+        /// Обработка события клика, выделение, рисование вершин и ребер
+        /// </summary>
+        /// <param name="data">Модель данных</param>
         public void ClickOnPainBox(GrafData data)
         {
-            if (CheckBoardCircle(data))
+            if (IsCheckBoardCircle(data))
             {
                 _mainDrawer.AddEdge(data);
             }
@@ -30,10 +31,32 @@ namespace Graf.Logic
                 _mainDrawer.AddVertex(data);
             }
         }
-
-        private bool CheckBoardCircle(GrafData data)
+        /// <summary>
+        /// Отрисовка графа на форме
+        /// </summary>
+        /// <param name="data">Модель данных</param>
+        public void Draw(GrafData data)
         {
-            return _mainDrawer.CheckBoardCircle(data);
+            _mainDrawer.Draw(data);
+        }
+        /// <summary>
+        /// Проверка выбора вершины
+        /// </summary>
+        /// <param name="data">Модель данных</param>
+        /// <returns>bool, выбрана или нет</returns>
+        private bool IsCheckBoardCircle(GrafData data)
+        {
+            return _mainDrawer.IsCheckBoardCircle(data);
+        }
+        /// <summary>
+        /// Очистка информации о ребра, при включении
+        /// или выключении режима орграфа
+        /// </summary>
+        public void CheckedChangedOnCheckBoxForRoute()
+        {
+            _mainDrawer.ClearChekedList();
+            _mainDrawer.ClearLineList();
+            _graf.DeleteEdges();
         }
     }
 }

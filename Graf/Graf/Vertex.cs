@@ -1,10 +1,17 @@
 namespace Graf
-{
-    public class Vertex
-    {
+{   /// <summary>
+    /// Класс описывает вершины графа
+    /// </summary>
+    internal class Vertex
+    {/// <summary>
+    /// Номер вершины
+    /// </summary>
         private int _num;
-
-        public Vertex(int num)
+        /// <summary>
+        /// Конструктр вершин
+        /// </summary>
+        /// <param name="num">номер вершины</param>
+        internal Vertex(int num)
         {
             _num = num;
         }
