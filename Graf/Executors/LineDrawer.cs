@@ -11,7 +11,6 @@ namespace Graf.Executors
         private int _weight;
         private Point _startPoint;
         private Point _finishPoint;
-        public int OrderForDraw { get; set; }
         public int NumStartVertex { get; set; }
         public int NumFinishVertex { get; set; }
 

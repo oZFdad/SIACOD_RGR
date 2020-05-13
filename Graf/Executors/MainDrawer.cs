@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
-using System.Threading;
 using Graf.Models;
 
 namespace Graf.Executors
@@ -79,6 +76,8 @@ namespace Graf.Executors
                 if (_drawForRippatyList.Count == 0)
                 {
                     _drawToBFS = false;
+                    _lineList.AddRange(_buferLineList);
+                    _buferLineList.Clear();
                 }
             }
         }

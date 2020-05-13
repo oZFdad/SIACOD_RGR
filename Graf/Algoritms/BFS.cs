@@ -23,7 +23,7 @@ namespace Graf.Algoritms
             _checkList.Add(root);
             var matrix = ConvertToMatrix.GetMatrix(_graf);
             var flag = 0;
-            while (_checkList.Count != _graf.GetVertexCount())
+            while (_checkList.Count != flag)
             {
                 for(var i = 0; i < _graf.GetVertexCount(); i++)
                 {
@@ -31,7 +31,6 @@ namespace Graf.Algoritms
                     {
                         Add(_checkList[flag], i + 1);
                     }
-                    
                 }
                 flag++;
             }
