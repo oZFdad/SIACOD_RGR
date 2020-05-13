@@ -22,6 +22,7 @@ namespace Graf.Executors
             var pen = new Pen(Color.Black);
             if (data.CheckEdgeRoute)
             {
+                pen = new Pen(Color.Black, 5);
                 pen.EndCap = LineCap.ArrowAnchor;
             }
             data.FormGraphics.DrawLine(pen, _startPoint, _finishPoint);

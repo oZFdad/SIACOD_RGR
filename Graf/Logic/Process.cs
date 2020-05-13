@@ -1,6 +1,6 @@
-using Graf.Algoritms;
 using Graf.Executors;
 using Graf.Models;
+using System.Collections.Generic;
 
 namespace Graf.Logic
 {    /// <summary>
@@ -10,12 +10,22 @@ namespace Graf.Logic
     {
         private MainDrawer _mainDrawer;
         private Graf _graf;
+        private IMission _ex;
+
+        public delegate void EventHandler();
+        public event EventHandler searchComplite;
 
         public Process()
         {
             _graf = new Graf();
             _mainDrawer = new MainDrawer(_graf);
         }
+
+        public string GetResaltSearch()
+        {
+            return _ex.GetListWithResalts();
+        }
+
         /// <summary>
         /// Обработка события клика, выделение, рисование вершин и ребер
         /// </summary>
@@ -39,6 +49,30 @@ namespace Graf.Logic
         {
             _mainDrawer.Draw(data);
         }
+
+        public void DoAlgoritm(CheckEx checkEx)
+        {
+            if (checkEx.RGR)
+            {
+                _ex = new RGR(_mainDrawer, _graf);
+            }
+            if (checkEx.Laba4)
+            {
+                _ex = new Laba4(_mainDrawer, _graf);
+            }
+            if (checkEx.Laba5)
+            {
+                _ex = new Laba5(_mainDrawer, _graf);
+            }
+            if (checkEx.Laba6)
+            {
+                _ex = new Laba6(_mainDrawer, _graf);
+            }
+            _ex.DoIt();
+
+            searchComplite?.Invoke();
+        }
+
         /// <summary>
         /// Проверка выбора вершины
         /// </summary>

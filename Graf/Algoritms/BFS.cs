@@ -10,6 +10,9 @@ namespace Graf.Algoritms
             _graf = graf;
         }
 
-
+        internal void ApplyAlgoritm()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

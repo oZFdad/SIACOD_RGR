@@ -1,52 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graf.Algoritms
 {
     internal class Floyd
     {
         private Graf _graf;
+        public int[,] Matrix { get; }
 
         internal Floyd(Graf graf)
         {
             _graf = graf;
+            var algoritm = new ConvertToMatrix(_graf);
+            Matrix = algoritm.GetMatrix();
+            ApplyAlgoritm();
         }
 
-        internal int[,] ApplyAlgoritm()
+        private void ApplyAlgoritm()
         {
-            var algoritm = new ConvertToMatrix(_graf);
-            var matrix = algoritm.GetMatrix();
-            for (var i = 0; i < matrix.GetLength(0); i++)
+            for (var i = 0; i < Matrix.GetLength(0); i++)
             {
-                for (var j = 0; j < matrix.GetLength(0); j++)
+                for (var j = 0; j < Matrix.GetLength(0); j++)
                 {
-                    if (matrix[i, j] == 0)
+                    if (Matrix[i, j] == 0)
                     {
-                        matrix[i, j] = 99999999;
+                        Matrix[i, j] = 99999999;
                     }
                 }
             }
-            for (var i = 0; i < matrix.GetLength(0); i++)
+            for (var i = 0; i < Matrix.GetLength(0); i++)
             {
-                matrix[i, i] = 0;
+                Matrix[i, i] = 0;
             }
-            for (var i = 0; i < matrix.GetLength(0); i++)
+            for (var i = 0; i < Matrix.GetLength(0); i++)
             {
-                for (var j = 0; j < matrix.GetLength(0); j++)
+                for (var j = 0; j < Matrix.GetLength(0); j++)
                 {
-                    for (var k = 0; k < matrix.GetLength(0); k++)
+                    for (var k = 0; k < Matrix.GetLength(0); k++)
                     {
-                        if (matrix[j, k] > matrix[j, i] + matrix[i, k])
+                        if (Matrix[j, k] > Matrix[j, i] + Matrix[i, k])
                         {
-                            matrix[j, k] = matrix[j, i] + matrix[i, k];
+                            Matrix[j, k] = Matrix[j, i] + Matrix[i, k];
                         }
                     }
                 }
             }
-            return matrix;
         }
     }
 }

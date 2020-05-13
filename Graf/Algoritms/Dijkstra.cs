@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Graf.Algoritms
 {
-    class Dijkstra
+    internal class Dijkstra
     {
+        internal void ApplyAlgoritm()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

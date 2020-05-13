@@ -50,7 +50,13 @@
     <Compile Include="Graf\Edge.cs" />
     <Compile Include="Graf\Graf.cs" />
     <Compile Include="Graf\Vertex.cs" />
+    <Compile Include="Logic\IMission.cs" />
+    <Compile Include="Logic\Laba4.cs" />
+    <Compile Include="Logic\Laba5.cs" />
+    <Compile Include="Logic\Laba6.cs" />
     <Compile Include="Logic\Process.cs" />
+    <Compile Include="Logic\RGR.cs" />
+    <Compile Include="Models\CheckEx.cs" />
     <Compile Include="Models\GrafData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
