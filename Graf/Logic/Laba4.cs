@@ -1,9 +1,6 @@
-﻿using Graf.Executors;
-using System;
+﻿using Graf.Algoritms;
+using Graf.Executors;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graf.Logic
 {
@@ -11,6 +8,7 @@ namespace Graf.Logic
     {
         private MainDrawer _mainDrawer;
         private Graf _graf;
+        private List<int> _vetexNumList;
 
         public Laba4(MainDrawer mainDrawer, Graf graf)
         {
@@ -20,12 +18,29 @@ namespace Graf.Logic
 
         public void DoIt()
         {
-            throw new NotImplementedException();
+            var bfs = new BFS(_graf);
+            bfs.ApplyAlgoritm(_mainDrawer.GetCheckedVetex());
+            _vetexNumList = bfs.CheckList;
+            _mainDrawer.TimingDraw(bfs.EdgeList);
         }
 
         public string GetListWithResalts()
         {
-            throw new NotImplementedException();
+            if (_vetexNumList.Count == 0)
+            {
+                return "Не корректные условия";
+            }
+
+            var result = "Порядок обхода: ";
+
+            foreach (var s in _vetexNumList)
+            {
+                result += $"{s}, ";
+            }
+            var index = result.Length - 2;
+            result = result.Remove(index, 2);
+
+            return result;
         }
     }
 }

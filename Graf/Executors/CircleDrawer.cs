@@ -50,7 +50,7 @@ namespace Graf.Executors
             }
             data.FormGraphics.DrawEllipse(pen, rect);
 
-            var brush = new SolidBrush(Color.Blue);
+            var brush = new SolidBrush(Color.Black);
             var fontFamily = new FontFamily("Comic Sans MS");
             var font = new Font(fontFamily, 12, FontStyle.Regular, GraphicsUnit.Pixel);
             data.FormGraphics.DrawString(Number.ToString(), font, brush, Point);

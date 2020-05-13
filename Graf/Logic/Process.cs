@@ -13,7 +13,7 @@ namespace Graf.Logic
         private IMission _ex;
 
         public delegate void EventHandler();
-        public event EventHandler searchComplite;
+        public event EventHandler algoritmComplete;
 
         public Process()
         {
@@ -54,11 +54,15 @@ namespace Graf.Logic
         {
             if (checkEx.RGR)
             {
-                _ex = new RGR(_mainDrawer, _graf);
+                _ex = new RGR(_graf);
             }
             if (checkEx.Laba4)
             {
                 _ex = new Laba4(_mainDrawer, _graf);
+                if (_mainDrawer.GetCheckedVetex() < 0)
+                {
+                    return;
+                }
             }
             if (checkEx.Laba5)
             {
@@ -69,8 +73,7 @@ namespace Graf.Logic
                 _ex = new Laba6(_mainDrawer, _graf);
             }
             _ex.DoIt();
-
-            searchComplite?.Invoke();
+            algoritmComplete?.Invoke();
         }
 
         /// <summary>

@@ -10,8 +10,7 @@ namespace Graf.Algoritms
         internal Floyd(Graf graf)
         {
             _graf = graf;
-            var algoritm = new ConvertToMatrix(_graf);
-            Matrix = algoritm.GetMatrix();
+            Matrix = ConvertToMatrix.GetMatrix(_graf);
             ApplyAlgoritm();
         }
 

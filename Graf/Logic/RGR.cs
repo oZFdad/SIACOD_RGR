@@ -7,13 +7,12 @@ namespace Graf.Logic
 {
     internal class RGR : IMission
     {
-        private MainDrawer _mainDrawer;
         private Graf _graf;
         private List<string> _listNumVertex = new List<string>();
 
-        public RGR(MainDrawer mainDrawer, Graf graf)
+
+        public RGR(Graf graf)
         {
-            _mainDrawer = mainDrawer;
             _graf = graf;
         }
 

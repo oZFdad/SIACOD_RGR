@@ -3,20 +3,14 @@
 /// </summary>
 namespace Graf.Algoritms
 {
-    internal class ConvertToMatrix
+    internal static class ConvertToMatrix
     {
-        private Graf _graf;
-        internal ConvertToMatrix(Graf graf)
+        internal static int[,] GetMatrix(Graf graf)
         {
-            _graf = graf;
-        }
-
-        internal int[,] GetMatrix()
-        {
-            var count = _graf.GetVertexCount();
+            var count = graf.GetVertexCount();
             var matrix = new int[count, count];
 
-            foreach(var edge in _graf.GetEdgeList())
+            foreach(var edge in graf.GetEdgeList())
             {
                 if (edge.Route)
                 {

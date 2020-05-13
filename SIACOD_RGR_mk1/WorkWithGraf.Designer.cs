@@ -155,6 +155,7 @@
             this.Controls.Add(this.painBox);
             this.Name = "WorkWithGraf";
             this.Text = "Form1";
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.WorkWithGraf_MouseDoubleClick);
             ((System.ComponentModel.ISupportInitialize)(this.painBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

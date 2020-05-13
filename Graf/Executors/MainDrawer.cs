@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
+using System.Threading;
 using Graf.Models;
 
 namespace Graf.Executors
@@ -10,6 +12,9 @@ namespace Graf.Executors
         private List<LineDrawer> _lineList = new List<LineDrawer>();
         private List<CircleDrawer> _checkedVertex = new List<CircleDrawer>();
         private Graf _graf;
+        private bool _drawToBFS;
+        private List<LineDrawer> _drawForRippatyList = new List<LineDrawer>();
+        private List<LineDrawer> _buferLineList = new List<LineDrawer>();
 
         internal MainDrawer(Graf graf)
         {
@@ -34,8 +39,29 @@ namespace Graf.Executors
             return false;
         }
 
+        internal void TimingDraw(List<Edge> edgeList)
+        {
+            foreach(var edge in edgeList)
+            {
+                foreach(var line in _lineList)
+                {
+                    if (edge.StartVertex == line.NumStartVertex && edge.FinishVertex == line.NumFinishVertex)
+                    {
+                        _drawForRippatyList.Add(line);
+                    }
+                }
+            }
+            _drawToBFS = true;
+        }
+
         internal void Draw(GrafData data)
         {
+            if (_drawToBFS)
+            {
+                _lineList.Remove(_drawForRippatyList[0]);
+                _buferLineList.Add(_drawForRippatyList[0]);
+                _drawForRippatyList.RemoveAt(0);
+            }
             foreach (var line in _lineList)
             {
                 line.Draw(data);
@@ -43,6 +69,17 @@ namespace Graf.Executors
             foreach (var circle in _circleList)
             {
                 circle.Draw(data);
+            }
+            foreach(var line in _buferLineList)
+            {
+                line.TimingDraw(data);
+            }
+            if (_drawToBFS)
+            {
+                if (_drawForRippatyList.Count == 0)
+                {
+                    _drawToBFS = false;
+                }
             }
         }
 
@@ -69,7 +106,14 @@ namespace Graf.Executors
                 {
                     _checkedVertex.Add(circle);
                     _graf.AddEdge(_checkedVertex[0].Number,_checkedVertex[1].Number,data.Weight, data.CheckEdgeRoute);
-                    _lineList.Add(new LineDrawer(_checkedVertex[0].Point,_checkedVertex[1].Point,data.Weight));
+                    _lineList.Add(new LineDrawer
+                        (
+                        _checkedVertex[0].Point, 
+                        _checkedVertex[1].Point, 
+                        data.Weight, 
+                        _checkedVertex[0].Number, 
+                        _checkedVertex[1].Number)
+                        );
                     _checkedVertex.Clear();
                     foreach(var circle2 in _circleList)
                     {
@@ -88,6 +132,18 @@ namespace Graf.Executors
         internal void ClearLineList()
         {
             _lineList.Clear();
+        }
+
+        internal int GetCheckedVetex()
+        {
+            if (_checkedVertex.Count == 0)
+            {
+                return -1;
+            }
+            else
+            {
+                return _checkedVertex[0].Number;
+            }
         }
     }
 }
