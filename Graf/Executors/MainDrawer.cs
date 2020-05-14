@@ -9,7 +9,7 @@ namespace Graf.Executors
         private List<LineDrawer> _lineList = new List<LineDrawer>();
         private List<CircleDrawer> _checkedVertex = new List<CircleDrawer>();
         private Graf _graf;
-        private bool _drawToBFS;
+        private bool _drawToRyppaty;
         private List<LineDrawer> _drawForRippatyList = new List<LineDrawer>();
         private List<LineDrawer> _buferLineList = new List<LineDrawer>();
 
@@ -42,18 +42,18 @@ namespace Graf.Executors
             {
                 foreach(var line in _lineList)
                 {
-                    if (edge.StartVertex == line.NumStartVertex && edge.FinishVertex == line.NumFinishVertex)
+                    if (edge.StartVertex == line.NumStartVertex && edge.FinishVertex == line.NumFinishVertex || edge.StartVertex == line.NumFinishVertex && edge.FinishVertex == line.NumStartVertex)
                     {
                         _drawForRippatyList.Add(line);
                     }
                 }
             }
-            _drawToBFS = true;
+            _drawToRyppaty = true;
         }
 
         internal void Draw(GrafData data)
         {
-            if (_drawToBFS)
+            if (_drawToRyppaty)
             {
                 _lineList.Remove(_drawForRippatyList[0]);
                 _buferLineList.Add(_drawForRippatyList[0]);
@@ -71,13 +71,18 @@ namespace Graf.Executors
             {
                 line.TimingDraw(data);
             }
-            if (_drawToBFS)
+            if (_drawToRyppaty)
             {
                 if (_drawForRippatyList.Count == 0)
                 {
-                    _drawToBFS = false;
+                    _drawToRyppaty = false;
                     _lineList.AddRange(_buferLineList);
                     _buferLineList.Clear();
+                    foreach (var circle in _circleList)
+                    {
+                        circle.Check = false;
+                    }
+                    _checkedVertex.Clear();
                 }
             }
         }
@@ -87,6 +92,11 @@ namespace Graf.Executors
             var num = _graf.AddVertex();
             var vertex = new CircleDrawer(num,data.ClicPoint);
             _circleList.Add(vertex);
+            _checkedVertex.Clear();
+            foreach (var circleDrawer in _circleList)
+            {
+                circleDrawer.Check = false;
+            }
         }
 
         internal void AddEdge(GrafData data)
@@ -104,6 +114,27 @@ namespace Graf.Executors
                 if (circle.Check && circle!=_checkedVertex[0])
                 {
                     _checkedVertex.Add(circle);
+                    foreach (var line in _lineList)
+                    {
+                        if (data.CheckEdgeRoute)
+                        {
+                            if (line.NumStartVertex == _checkedVertex[0].Number &&
+                                line.NumFinishVertex == _checkedVertex[1].Number)
+                            {
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            if (line.NumStartVertex == _checkedVertex[0].Number &&
+                                line.NumFinishVertex == _checkedVertex[1].Number ||
+                                line.NumStartVertex == _checkedVertex[1].Number &&
+                                line.NumFinishVertex == _checkedVertex[0].Number)
+                            {
+                                return;
+                            }
+                        }
+                    }
                     _graf.AddEdge(_checkedVertex[0].Number,_checkedVertex[1].Number,data.Weight, data.CheckEdgeRoute);
                     _lineList.Add(new LineDrawer
                         (

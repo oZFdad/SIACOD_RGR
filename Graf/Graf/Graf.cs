@@ -2,16 +2,16 @@ using System.Collections.Generic;
 
 namespace Graf
 {   /// <summary>
-    /// Класс описывает Граф
+    /// РљР»Р°СЃСЃ РѕРїРёСЃС‹РІР°РµС‚ Р“СЂР°С„
     /// </summary>
     internal class Graf
     {
         private List<Vertex> _vertexList = new List<Vertex>();
         private List<Edge> _edgeList = new List<Edge>();
         /// <summary>
-        /// Метод добавления вершин в граф
+        /// РњРµС‚РѕРґ РґРѕР±Р°РІР»РµРЅРёСЏ РІРµСЂС€РёРЅ РІ РіСЂР°С„
         /// </summary>
-        /// <returns>Возвращает индекс добавленой вершины</returns>
+        /// <returns>Р’РѕР·РІСЂР°С‰Р°РµС‚ РёРЅРґРµРєСЃ РґРѕР±Р°РІР»РµРЅРѕР№ РІРµСЂС€РёРЅС‹</returns>
         internal int AddVertex()
         {
             var vertex = new Vertex(_vertexList.Count);
@@ -19,18 +19,18 @@ namespace Graf
             return _vertexList.Count;
         }
         /// <summary>
-        /// Метод добавления ребер
+        /// РњРµС‚РѕРґ РґРѕР±Р°РІР»РµРЅРёСЏ СЂРµР±РµСЂ
         /// </summary>
-        /// <param name="start">вершина от которой прокладывается ребро</param>
-        /// <param name="finish">вершина к которой прокладывается ребро</param>
-        /// <param name="weight">вес ребра</param>
-        /// <param name="route">true если граф ориентированый</param>
+        /// <param name="start">РІРµСЂС€РёРЅР° РѕС‚ РєРѕС‚РѕСЂРѕР№ РїСЂРѕРєР»Р°РґС‹РІР°РµС‚СЃСЏ СЂРµР±СЂРѕ</param>
+        /// <param name="finish">РІРµСЂС€РёРЅР° Рє РєРѕС‚РѕСЂРѕР№ РїСЂРѕРєР»Р°РґС‹РІР°РµС‚СЃСЏ СЂРµР±СЂРѕ</param>
+        /// <param name="weight">РІРµСЃ СЂРµР±СЂР°</param>
+        /// <param name="route">true РµСЃР»Рё РіСЂР°С„ РѕСЂРёРµРЅС‚РёСЂРѕРІР°РЅС‹Р№</param>
         internal void AddEdge(int start, int finish, int weight, bool route)
         {
             _edgeList.Add(new Edge(start, finish, weight, route));
         }
         /// <summary>
-        /// Метод удаления ребер в графе
+        /// РњРµС‚РѕРґ СѓРґР°Р»РµРЅРёСЏ СЂРµР±РµСЂ РІ РіСЂР°С„Рµ
         /// </summary>
         internal void DeleteEdges()
         {
@@ -45,6 +45,25 @@ namespace Graf
         internal List<Edge> GetEdgeList()
         {
             return _edgeList;
+        }
+
+        public void DeleteEdge(Edge edge)
+        {
+            _edgeList.Remove(edge);
+        }
+
+        public void Restore(int[,] matrix)
+        {
+            for (var i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (var j = 0; j < matrix.GetLength(0); j++)
+                {
+                    if (matrix[i, j] != 0)
+                    {
+                        _edgeList.Add((new Edge(i + 1,j + 1,matrix[i,j], false)));
+                    }
+                }
+            }
         }
     }
 }

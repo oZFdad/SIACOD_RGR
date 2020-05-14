@@ -1,5 +1,6 @@
 ﻿using Graf.Executors;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Graf.Algoritms;
 
@@ -49,6 +50,11 @@ namespace Graf.Logic
                 if (counter == 0)
                 {
                     _result = "Есть Эйлеров цикл";
+                    if (_mainDrawer.GetCheckedVetex() < 0)
+                    {
+                        return;
+                    }
+                    _mainDrawer.TimingDraw(GetEdgeList());
                     return;
                 }
                 else
@@ -62,6 +68,47 @@ namespace Graf.Logic
                 _result = "Нет Эйлерова цикла, граф несвязный";
                 return;
             }
+        }
+
+        private List<Edge> GetEdgeList()
+        {
+            var matrix = ConvertToMatrix.GetMatrix(_graf);
+            var edgeList = new List<Edge>();
+            var vertexStack = new Stack<int>();
+            var rootList = new List<int>();
+            
+            var root = _mainDrawer.GetCheckedVetex();
+            vertexStack.Push(root);
+
+            while (vertexStack.Count!=0)
+            {
+                var edge = _graf.GetEdgeList().FirstOrDefault(e => e.StartVertex == vertexStack.Peek() || e.FinishVertex==vertexStack.Peek());
+                if (edge == null)
+                {
+                    rootList.Add(vertexStack.Pop());
+                    continue;
+                }
+
+                if (edge.StartVertex == vertexStack.Peek())
+                {
+                    vertexStack.Push(edge.FinishVertex);
+                }
+                else
+                {
+                    vertexStack.Push(edge.StartVertex);
+                }
+                _graf.DeleteEdge(edge);
+            }
+
+            rootList.Reverse();
+            for (var i = 0; i < rootList.Count - 1; i++)
+            {
+                edgeList.Add(new Edge(rootList[i], rootList[i+1], 0 , false));
+            }
+
+            _graf.Restore(matrix);
+
+            return edgeList;
         }
 
         public string GetListWithResalts()

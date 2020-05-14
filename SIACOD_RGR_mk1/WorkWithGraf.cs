@@ -12,7 +12,7 @@ namespace SIACOD_RGR_mk1
         public WorkWithGraf()
         {
             InitializeComponent();
-            rbRGR.Checked = true;
+            rbLaba5.Checked = true;
         }
 
         private void ShowResult()
