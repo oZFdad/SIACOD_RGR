@@ -55,6 +55,10 @@ namespace SIACOD_RGR_mk1
             {
                 _process.algoritmComplete += ShowResult;
             }
+            if (rbLaba5.Checked)
+            {
+                _process.algoritmComplete += ShowResult;
+            }
             _process.DoAlgoritm(new CheckEx
             {
                 RGR = rbRGR.Checked,
