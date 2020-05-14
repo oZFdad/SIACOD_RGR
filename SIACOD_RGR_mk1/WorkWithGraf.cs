@@ -20,11 +20,6 @@ namespace SIACOD_RGR_mk1
             lbResalt.Text = _process.GetResaltSearch();
         }
 
-        private void RefreshPainBox()
-        {
-            painBox.Refresh();
-        }
-
         private void painBox_Paint(object sender, PaintEventArgs e)
         {
             _process.Draw(new GrafData
@@ -71,22 +66,24 @@ namespace SIACOD_RGR_mk1
 
         private void rbRGR_CheckedChanged(object sender, EventArgs e)
         {
-            _process = new Process();
-            painBox.Refresh();
+            Clear();
         }
 
         private void rbLaba4_CheckedChanged(object sender, EventArgs e)
         {
-            _process = new Process();
-            painBox.Refresh();
+            Clear();
         }
         private void rbLaba5_CheckedChanged(object sender, EventArgs e)
         {
-            _process = new Process();
-            painBox.Refresh();
+            Clear();
         }
 
         private void rbLaba6_CheckedChanged(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
+        private void Clear()
         {
             _process = new Process();
             painBox.Refresh();

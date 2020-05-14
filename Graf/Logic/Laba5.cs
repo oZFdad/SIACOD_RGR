@@ -1,9 +1,6 @@
 ﻿using Graf.Executors;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Graf.Logic
 {
@@ -20,7 +17,37 @@ namespace Graf.Logic
 
         public void DoIt()
         {
-            throw new NotImplementedException();
+            var helpList = new int[_graf.VertexList.Count];
+            foreach (var edge in _graf.EdgesList)
+            {
+                helpList[edge.FitstVertex]++;
+                helpList[edge.SecondVertex]++;
+            }
+            var counter = 0;
+            foreach (var numOfVertex in helpList)
+            {
+                if (numOfVertex == 0)
+                {
+                    return "Нет Эйлерова цикла, граф несвязный";
+                }
+                counter += numOfVertex % 2;
+            }
+            var floyd = new Floyd(_graf);
+            if (floyd.CheckGrafFloyd())
+            {
+                if (counter == 0)
+                {
+                    return "Есть Эйлеров цикл";
+                }
+                else
+                {
+                    return "Нет Эйлерова цикла, есть вершины с нечетной степенью";
+                }
+            }
+            else
+            {
+                return "Нет Эйлерова цикла, граф несвязный";
+            }
         }
 
         public string GetListWithResalts()
