@@ -1,6 +1,7 @@
 ﻿using Graf.Logic;
 using Graf.Models;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -9,10 +10,11 @@ namespace SIACOD_RGR_mk1
     public partial class WorkWithGraf : Form
     {
         private Process _process = new Process();
+        private Random _rnd=new Random();
         public WorkWithGraf()
         {
             InitializeComponent();
-            rbLaba5.Checked = true;
+            rbLaba6.Checked = true;
         }
 
         private void ShowResult()
@@ -31,11 +33,16 @@ namespace SIACOD_RGR_mk1
 
         private void painBox_MouseDown(object sender, MouseEventArgs e)
         {
+            var weight = 30;
+            if (rbLaba6.Checked)
+            {
+                weight = _rnd.Next(1, 11);
+            }
             _process.ClickOnPainBox(new GrafData
             {
                 ClicPoint = new Point(e.X, e.Y),
                 CheckEdgeRoute = !rbLaba5.Checked,
-                Weight = 30
+                Weight = weight
             });
             painBox.Refresh();
         }
@@ -47,18 +54,7 @@ namespace SIACOD_RGR_mk1
 
         private void btDoAlgoritm_Click(object sender, EventArgs e)
         {
-            if (rbRGR.Checked)
-            {
-                _process.algoritmComplete += ShowResult;
-            }
-            if (rbLaba4.Checked)
-            {
-                _process.algoritmComplete += ShowResult;
-            }
-            if (rbLaba5.Checked)
-            {
-                _process.algoritmComplete += ShowResult;
-            }
+            _process.algoritmComplete += ShowResult;
             _process.DoAlgoritm(new CheckEx
             {
                 RGR = rbRGR.Checked,

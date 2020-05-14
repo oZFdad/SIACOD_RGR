@@ -157,6 +157,10 @@ namespace Graf.Executors
         internal void ClearChekedList()
         {
             _checkedVertex.Clear();
+            foreach (var circle in _circleList)
+            {
+                circle.Check = false;
+            }
         }
 
         internal void ClearLineList()

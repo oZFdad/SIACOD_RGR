@@ -8,7 +8,10 @@ namespace Graf.Executors
 {
     internal class LineDrawer
     {
-        private int _weight;
+        public int Weight
+        {
+            get;
+        }
         private Point _startPoint;
         private Point _finishPoint;
         public int NumStartVertex { get; set; }
@@ -18,7 +21,7 @@ namespace Graf.Executors
         {
             _startPoint = start;
             _finishPoint = finish;
-            _weight = weight;
+            Weight = weight;
             NumStartVertex = numStart;
             NumFinishVertex = numFinish;
         }
@@ -32,6 +35,7 @@ namespace Graf.Executors
                 pen.EndCap = LineCap.ArrowAnchor;
             }
             data.FormGraphics.DrawLine(pen, _startPoint, _finishPoint);
+            WriteWeight(data);
         }
 
         internal void TimingDraw(GrafData data)
@@ -39,6 +43,19 @@ namespace Graf.Executors
             var pen = new Pen(Color.Red, 5);
             pen.EndCap = LineCap.ArrowAnchor;
             data.FormGraphics.DrawLine(pen, _startPoint, _finishPoint);
+            WriteWeight(data);
+        }
+
+        private void WriteWeight(GrafData data)
+        {
+            if (Weight != 30)
+            {
+                var point = new Point((_startPoint.X + _finishPoint.X) / 2, (_startPoint.Y + _finishPoint.Y) / 2);
+                var brush = new SolidBrush(Color.Black);
+                var fontFamily = new FontFamily("Comic Sans MS");
+                var font = new Font(fontFamily, 16, FontStyle.Underline, GraphicsUnit.Pixel);
+                data.FormGraphics.DrawString(Weight.ToString(), font, brush, point);
+            }
         }
     }
 }

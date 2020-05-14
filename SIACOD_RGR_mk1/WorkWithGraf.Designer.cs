@@ -38,7 +38,7 @@
             this.lbChooseEx = new System.Windows.Forms.Label();
             this.btDoAlgoritm = new System.Windows.Forms.Button();
             this.lbResalt = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.painBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.painBox)).BeginInit();
             this.SuspendLayout();
             // 
             // painBox
@@ -156,22 +156,21 @@
             this.Name = "WorkWithGraf";
             this.Text = "Form1";
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.WorkWithGraf_MouseDoubleClick);
-            ((System.ComponentModel.ISupportInitialize)(this.painBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.painBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
-        private System.Windows.Forms.PictureBox painBox;
-
-        #endregion
+        private System.Windows.Forms.Button btDoAlgoritm;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RadioButton rbRGR;
+        private System.Windows.Forms.Label lbChooseEx;
+        private System.Windows.Forms.Label lbResalt;
+        private System.Windows.Forms.PictureBox painBox;
         private System.Windows.Forms.RadioButton rbLaba4;
         private System.Windows.Forms.RadioButton rbLaba5;
         private System.Windows.Forms.RadioButton rbLaba6;
-        private System.Windows.Forms.Label lbChooseEx;
-        private System.Windows.Forms.Button btDoAlgoritm;
-        private System.Windows.Forms.Label lbResalt;
+        private System.Windows.Forms.RadioButton rbRGR;
+
+        #endregion
     }
 }

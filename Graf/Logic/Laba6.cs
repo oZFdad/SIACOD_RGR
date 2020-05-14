@@ -20,12 +20,13 @@ namespace Graf.Logic
 
         public void DoIt()
         {
-            throw new NotImplementedException();
+            
         }
 
         public string GetListWithResalts()
         {
-            throw new NotImplementedException();
+            return "Ok";
+            //throw new NotImplementedException();
         }
     }
 }
