@@ -11,5 +11,6 @@ namespace Graf.Models
         public bool CheckEdgeRoute { get; set; }
         public bool CheckCircle { get; set; }
         public int Weight { get; set; }
+        public bool ForDej { get; set; }
     }
 }

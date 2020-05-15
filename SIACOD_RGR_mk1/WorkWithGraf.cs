@@ -1,7 +1,6 @@
 ﻿using Graf.Logic;
 using Graf.Models;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -11,6 +10,7 @@ namespace SIACOD_RGR_mk1
     {
         private Process _process = new Process();
         private Random _rnd=new Random();
+        private bool _check;
         public WorkWithGraf()
         {
             InitializeComponent();
@@ -33,6 +33,15 @@ namespace SIACOD_RGR_mk1
 
         private void painBox_MouseDown(object sender, MouseEventArgs e)
         {
+            if (_check)
+            {
+                _process.CheckVertex(new GrafData
+                {
+                    ClicPoint = new Point(e.X, e.Y)
+                });
+                painBox.Refresh();
+                return;
+            }
             var weight = 30;
             if (rbLaba6.Checked)
             {
@@ -55,6 +64,14 @@ namespace SIACOD_RGR_mk1
         private void btDoAlgoritm_Click(object sender, EventArgs e)
         {
             _process.algoritmComplete += ShowResult;
+            if (rbLaba6.Checked)
+            {
+                if (!_check)
+                {
+                    MessageBox.Show("Выберете старт и финиш", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                _check = true;
+            }
             _process.DoAlgoritm(new CheckEx
             {
                 RGR = rbRGR.Checked,

@@ -70,6 +70,10 @@ namespace Graf.Logic
             }
             if (checkEx.Laba6)
             {
+                if (!_mainDrawer.FullListForDej())
+                {
+                    return;
+                }
                 _ex = new Laba6(_mainDrawer, _graf);
             }
             _ex.DoIt();
@@ -94,6 +98,12 @@ namespace Graf.Logic
             _mainDrawer.ClearChekedList();
             _mainDrawer.ClearLineList();
             _graf.DeleteEdges();
+        }
+
+        public void CheckVertex(GrafData data)
+        {
+            data.ForDej = true;
+            _mainDrawer.IsCheckBoardCircle(data);
         }
     }
 }

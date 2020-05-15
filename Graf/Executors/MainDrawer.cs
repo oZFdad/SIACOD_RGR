@@ -12,6 +12,8 @@ namespace Graf.Executors
         private bool _drawToRyppaty;
         private List<LineDrawer> _drawForRippatyList = new List<LineDrawer>();
         private List<LineDrawer> _buferLineList = new List<LineDrawer>();
+        
+        private Queue<int> _listForDej = new Queue<int>();
 
         internal MainDrawer(Graf graf)
         {
@@ -29,6 +31,15 @@ namespace Graf.Executors
                 {
                     circle.Check = !circle.Check;
                     data.CheckCircle = !data.CheckCircle;
+                    if (data.ForDej)
+                    {
+                        _listForDej.Enqueue(circle.Number);
+                        if (_listForDej.Count > 2)
+                        {
+                            _listForDej.Clear();
+                            ClearChekedList();
+                        }
+                    }
                     return true;
                 }
             }
@@ -178,6 +189,16 @@ namespace Graf.Executors
             {
                 return _checkedVertex[0].Number;
             }
+        }
+
+        public int GetVertexForDej()
+        {
+            return _listForDej.Dequeue();
+        }
+
+        public bool FullListForDej()
+        {
+            return _listForDej.Count == 2;
         }
     }
 }
