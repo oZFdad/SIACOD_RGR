@@ -20,6 +20,7 @@ namespace SIACOD_RGR_mk1
         private void ShowResult()
         {
             lbResalt.Text = _process.GetResaltSearch();
+            _check = false;
         }
 
         private void painBox_Paint(object sender, PaintEventArgs e)
