@@ -41,9 +41,7 @@
   <ItemGroup>
     <Compile Include="Algoritms\BFS.cs" />
     <Compile Include="Algoritms\ConvertToMatrix.cs" />
-    <Compile Include="Algoritms\Dijkstra.cs" />
     <Compile Include="Algoritms\Floyd.cs" />
-    <Compile Include="Algoritms\SearchRootAсyclicGraf.cs" />
     <Compile Include="Executors\CircleDrawer.cs" />
     <Compile Include="Executors\LineDrawer.cs" />
     <Compile Include="Executors\MainDrawer.cs" />
