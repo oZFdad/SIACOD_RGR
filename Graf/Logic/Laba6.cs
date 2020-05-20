@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Graf.Algoritms;
 
 namespace Graf.Logic
@@ -24,6 +22,7 @@ namespace Graf.Logic
         public void DoIt()
         {
             var matrix = ConvertToMatrix.GetMatrix(_graf);
+            var copyMatrix = ConvertToMatrix.GetMatrix(_graf);
             var start = _mainDrawer.GetVertexForDej() - 1;
             var finish = _mainDrawer.GetVertexForDej() - 1;
             
@@ -62,15 +61,37 @@ namespace Graf.Logic
                 }
             }
 
-            var vertexList = new List<int>();
-            vertexList.Add(finish + 1);
-            while (finish != start)
+            for (var i = 0; i < matrix.GetLength(0); i++)
             {
-                vertexList.Add(routeMatrix[start,finish] + 1);
-                finish = routeMatrix[start, finish];
+                matrix[i, i] = 0;
             }
+
+            var vertexList = new List<int>();
+            //vertexList.Add(finish + 1);
+            //while (finish != start)
+            //{
+            //    vertexList.Add(routeMatrix[start,finish] + 1);
+            //    finish = routeMatrix[start, finish];
+            //}
+            //vertexList.Reverse();
+
+            var s = matrix[start, finish];
+            while (s > 0)
+            {
+                for (var i = 0; i < matrix.GetLength(0); i++)
+                {
+                    if (s - copyMatrix[i, finish] == matrix[start, i] && i != finish && start != finish)
+                    {
+                        s -= copyMatrix[i, finish];
+                        vertexList.Add(finish + 1);
+                        finish = i;
+                        break;
+                    }
+                }
+            }
+
+            vertexList.Add(start + 1);
             vertexList.Reverse();
-            
 
             foreach (var i in vertexList)
             {
