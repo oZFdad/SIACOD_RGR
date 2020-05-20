@@ -3,7 +3,6 @@ using Graf.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace SIACOD_RGR_mk1
@@ -11,22 +10,13 @@ namespace SIACOD_RGR_mk1
     public partial class WorkWithGraf : Form
     {
         private Process _process = new Process();
-        private Random _rnd=new Random();
+        private Random _rnd = new Random();
         private bool _check;
+        private bool _subscr;
         public WorkWithGraf()
         {
             InitializeComponent();
             rbLaba6.Checked = true;
-            if (rbLaba6.Checked)
-            {
-                dgwDej.Visible = true;
-            }
-            else
-            {
-                dgwDej.Visible = false;
-            }
-
-            _process.AddEdgeEvent += AddRowInDGW;
         }
 
         private void ShowResult()
@@ -46,6 +36,11 @@ namespace SIACOD_RGR_mk1
 
         private void painBox_MouseDown(object sender, MouseEventArgs e)
         {
+            if (!_subscr)
+            {
+                _subscr = true;
+                _process.AddEdgeEvent += AddRowInDGW;
+            }
             if (_check)
             {
                 _process.CheckVertex(new GrafData
@@ -92,18 +87,15 @@ namespace SIACOD_RGR_mk1
         private void rbRGR_CheckedChanged(object sender, EventArgs e)
         {
             Clear();
-            dgwDej.Visible = false;
         }
 
         private void rbLaba4_CheckedChanged(object sender, EventArgs e)
         {
             Clear();
-            dgwDej.Visible = false;
         }
         private void rbLaba5_CheckedChanged(object sender, EventArgs e)
         {
             Clear();
-            dgwDej.Visible = false;
         }
 
         private void rbLaba6_CheckedChanged(object sender, EventArgs e)
@@ -115,6 +107,8 @@ namespace SIACOD_RGR_mk1
         private void Clear()
         {
             _process = new Process();
+            _subscr = false;
+            dgwDej.Visible = false;
             painBox.Refresh();
         }
 
