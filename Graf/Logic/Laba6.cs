@@ -26,15 +26,12 @@ namespace Graf.Logic
             var start = _mainDrawer.GetVertexForDej() - 1;
             var finish = _mainDrawer.GetVertexForDej() - 1;
             
-            var routeMatrix = new int[matrix.GetLength(0), matrix.GetLength(0)];
-            
             for (var i = 0; i < matrix.GetLength(0); i++)
             {
                 for (var j = 0; j < matrix.GetLength(0); j++)
                 {
                     if (matrix[i, j] == 0)
                     {
-                        routeMatrix[i, j] = 9999999;
                         matrix[i, j] = 999999999;
                     }
                 }
@@ -53,7 +50,6 @@ namespace Graf.Logic
                             if (matrix[i, j] > matrix[i, k] + matrix[k, j])
                             {
                                 matrix[i, j] = matrix[i, k] + matrix[k, j];
-                                routeMatrix[i, j] = k;
                                 changed = true;
                             }
                         }
@@ -67,13 +63,6 @@ namespace Graf.Logic
             }
 
             var vertexList = new List<int>();
-            //vertexList.Add(finish + 1);
-            //while (finish != start)
-            //{
-            //    vertexList.Add(routeMatrix[start,finish] + 1);
-            //    finish = routeMatrix[start, finish];
-            //}
-            //vertexList.Reverse();
 
             var s = matrix[start, finish];
             while (s > 0)
