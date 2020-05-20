@@ -11,7 +11,9 @@ namespace Graf
         public int FinishVertex { get => _finishVertex; }
 
         private int _weight;
-        public int Weight { get => _weight; }
+        public int Weight { get => _weight;
+            set => _weight = value;
+        }
 
         private bool _route;
         public bool Route { get => _route; }

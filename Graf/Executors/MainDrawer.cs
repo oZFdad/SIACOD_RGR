@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Graf.Models;
 
 namespace Graf.Executors
@@ -199,6 +200,15 @@ namespace Graf.Executors
         public bool FullListForDej()
         {
             return _listForDej.Count == 2;
+        }
+
+        public void EditEdge(int start, int finish, int weight)
+        {
+            var edge = _lineList.FirstOrDefault(e =>  e.NumStartVertex == start && e.NumFinishVertex == finish );
+            if (edge != null)
+            {
+                edge.Weight = weight;
+            }
         }
     }
 }

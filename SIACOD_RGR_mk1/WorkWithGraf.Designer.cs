@@ -30,7 +30,6 @@
         private void InitializeComponent()
         {
             this.painBox = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.rbRGR = new System.Windows.Forms.RadioButton();
             this.rbLaba4 = new System.Windows.Forms.RadioButton();
             this.rbLaba5 = new System.Windows.Forms.RadioButton();
@@ -38,7 +37,12 @@
             this.lbChooseEx = new System.Windows.Forms.Label();
             this.btDoAlgoritm = new System.Windows.Forms.Button();
             this.lbResalt = new System.Windows.Forms.Label();
+            this.dgwDej = new System.Windows.Forms.DataGridView();
+            this.StartColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FinishColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WeihtColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize) (this.painBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.dgwDej)).BeginInit();
             this.SuspendLayout();
             // 
             // painBox
@@ -51,16 +55,6 @@
             this.painBox.TabStop = false;
             this.painBox.Paint += new System.Windows.Forms.PaintEventHandler(this.painBox_Paint);
             this.painBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.painBox_MouseDown);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(85, 356);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // rbRGR
             // 
@@ -139,11 +133,51 @@
             this.lbResalt.TabIndex = 9;
             this.lbResalt.Text = "Для получения результата нажмите вкнопку выше";
             // 
+            // dgwDej
+            // 
+            this.dgwDej.AllowUserToAddRows = false;
+            this.dgwDej.AllowUserToDeleteRows = false;
+            this.dgwDej.AllowUserToOrderColumns = true;
+            this.dgwDej.AllowUserToResizeRows = false;
+            this.dgwDej.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgwDej.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwDej.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {this.StartColumn, this.FinishColumn, this.WeihtColumn});
+            this.dgwDej.Location = new System.Drawing.Point(12, 210);
+            this.dgwDej.Name = "dgwDej";
+            this.dgwDej.RowHeadersWidth = 40;
+            this.dgwDej.Size = new System.Drawing.Size(219, 228);
+            this.dgwDej.TabIndex = 10;
+            this.dgwDej.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwDej_CellValueChanged);
+            // 
+            // StartColumn
+            // 
+            this.StartColumn.Frozen = true;
+            this.StartColumn.HeaderText = "Start";
+            this.StartColumn.Name = "StartColumn";
+            this.StartColumn.ReadOnly = true;
+            this.StartColumn.Width = 54;
+            // 
+            // FinishColumn
+            // 
+            this.FinishColumn.Frozen = true;
+            this.FinishColumn.HeaderText = "Finish";
+            this.FinishColumn.Name = "FinishColumn";
+            this.FinishColumn.ReadOnly = true;
+            this.FinishColumn.Width = 59;
+            // 
+            // WeihtColumn
+            // 
+            this.WeihtColumn.Frozen = true;
+            this.WeihtColumn.HeaderText = "Weight";
+            this.WeihtColumn.Name = "WeihtColumn";
+            this.WeihtColumn.Width = 66;
+            // 
             // WorkWithGraf
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dgwDej);
             this.Controls.Add(this.lbResalt);
             this.Controls.Add(this.btDoAlgoritm);
             this.Controls.Add(this.lbChooseEx);
@@ -151,18 +185,19 @@
             this.Controls.Add(this.rbLaba5);
             this.Controls.Add(this.rbLaba4);
             this.Controls.Add(this.rbRGR);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.painBox);
             this.Name = "WorkWithGraf";
             this.Text = "Form1";
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.WorkWithGraf_MouseDoubleClick);
             ((System.ComponentModel.ISupportInitialize) (this.painBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.dgwDej)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
 
         private System.Windows.Forms.Button btDoAlgoritm;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dgwDej;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FinishColumn;
         private System.Windows.Forms.Label lbChooseEx;
         private System.Windows.Forms.Label lbResalt;
         private System.Windows.Forms.PictureBox painBox;
@@ -170,6 +205,8 @@
         private System.Windows.Forms.RadioButton rbLaba5;
         private System.Windows.Forms.RadioButton rbLaba6;
         private System.Windows.Forms.RadioButton rbRGR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StartColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WeihtColumn;
 
         #endregion
     }

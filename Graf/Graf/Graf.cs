@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Graf
 {   /// <summary>
@@ -54,15 +55,25 @@ namespace Graf
 
         public void Restore(int[,] matrix)
         {
+            _edgeList=new List<Edge>();
             for (var i = 0; i < matrix.GetLength(0); i++)
             {
-                for (var j = 0; j < matrix.GetLength(0); j++)
+                for (var j = i; j < matrix.GetLength(0); j++)
                 {
                     if (matrix[i, j] != 0)
                     {
                         _edgeList.Add((new Edge(i + 1,j + 1,matrix[i,j], false)));
                     }
                 }
+            }
+        }
+
+        public void EditEdge(int start, int finish, int weight)
+        {
+            var edge = _edgeList.FirstOrDefault(e =>  e.StartVertex == start && e.FinishVertex == finish );
+            if (edge != null)
+            {
+                edge.Weight = weight;
             }
         }
     }

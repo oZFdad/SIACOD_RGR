@@ -57,6 +57,7 @@
     <Compile Include="Logic\Process.cs" />
     <Compile Include="Logic\RGR.cs" />
     <Compile Include="Models\CheckEx.cs" />
+    <Compile Include="Models\EdgeForDGW.cs" />
     <Compile Include="Models\GrafData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

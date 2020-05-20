@@ -56,7 +56,9 @@ namespace Graf.Logic
                     }
                 }
             }
-
+            
+            _result = matrix[start, finish].ToString();
+            
             for (var i = 0; i < matrix.GetLength(0); i++)
             {
                 matrix[i, i] = 0;
@@ -82,10 +84,10 @@ namespace Graf.Logic
             vertexList.Add(start + 1);
             vertexList.Reverse();
 
-            foreach (var i in vertexList)
+            /*foreach (var i in vertexList)
             {
                 _result += $"{Convert.ToString(i)} ";
-            }
+            }*/
             
             var edgeList = new List<Edge>();
             for (var i = 0; i < vertexList.Count - 1; i++)
@@ -97,6 +99,7 @@ namespace Graf.Logic
                     edgeList.Add(edge);
                 }
             }
+
             _mainDrawer.TimingDraw(edgeList);
         }
 

@@ -13,7 +13,10 @@ namespace Graf.Logic
         private IMission _ex;
 
         public delegate void EventHandler();
+
+        public delegate void AddEdgeEventHandler(List<EdgeForDGW> data);
         public event EventHandler algoritmComplete;
+        public event AddEdgeEventHandler AddEdgeEvent;
 
         public Process()
         {
@@ -48,6 +51,17 @@ namespace Graf.Logic
         public void Draw(GrafData data)
         {
             _mainDrawer.Draw(data);
+            var edgeList = new List<EdgeForDGW>();
+            foreach (var edge in _graf.GetEdgeList())
+            {
+                edgeList.Add(new EdgeForDGW
+                {
+                    Start = edge.StartVertex,
+                    Finish = edge.FinishVertex,
+                    Weight = edge.Weight
+                });
+            }
+            AddEdgeEvent?.Invoke(edgeList);
         }
 
         public void DoAlgoritm(CheckEx checkEx)
@@ -104,6 +118,12 @@ namespace Graf.Logic
         {
             data.ForDej = true;
             _mainDrawer.IsCheckBoardCircle(data);
+        }
+
+        public void EditEdge(int start, int finish, int weight)
+        {
+            _graf.EditEdge(start, finish, weight);
+            _mainDrawer.EditEdge(start, finish, weight);
         }
     }
 }

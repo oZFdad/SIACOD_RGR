@@ -1,7 +1,9 @@
 ﻿using Graf.Logic;
 using Graf.Models;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SIACOD_RGR_mk1
@@ -15,6 +17,16 @@ namespace SIACOD_RGR_mk1
         {
             InitializeComponent();
             rbLaba6.Checked = true;
+            if (rbLaba6.Checked)
+            {
+                dgwDej.Visible = true;
+            }
+            else
+            {
+                dgwDej.Visible = false;
+            }
+
+            _process.AddEdgeEvent += AddRowInDGW;
         }
 
         private void ShowResult()
@@ -57,11 +69,6 @@ namespace SIACOD_RGR_mk1
             painBox.Refresh();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            painBox.Refresh();
-        }
-
         private void btDoAlgoritm_Click(object sender, EventArgs e)
         {
             _process.algoritmComplete += ShowResult;
@@ -85,20 +92,24 @@ namespace SIACOD_RGR_mk1
         private void rbRGR_CheckedChanged(object sender, EventArgs e)
         {
             Clear();
+            dgwDej.Visible = false;
         }
 
         private void rbLaba4_CheckedChanged(object sender, EventArgs e)
         {
             Clear();
+            dgwDej.Visible = false;
         }
         private void rbLaba5_CheckedChanged(object sender, EventArgs e)
         {
             Clear();
+            dgwDej.Visible = false;
         }
 
         private void rbLaba6_CheckedChanged(object sender, EventArgs e)
         {
             Clear();
+            dgwDej.Visible = true;
         }
 
         private void Clear()
@@ -110,6 +121,29 @@ namespace SIACOD_RGR_mk1
         private void WorkWithGraf_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             painBox.Refresh();
+        }
+
+        private void AddRowInDGW(List<EdgeForDGW> data)
+        {
+            dgwDej.Rows.Clear();
+            foreach (var edgeForDgw in data)
+            {
+                dgwDej.Rows.Add(edgeForDgw.Start, edgeForDgw.Finish, edgeForDgw.Weight);
+            }
+        }
+
+        private void dgwDej_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            var index = e.RowIndex;
+            if (index >= 0)
+            {
+                var collection = dgwDej.Rows[index].Cells;
+                var start = Convert.ToInt32(collection[0].Value);
+                var finish = Convert.ToInt32(collection[1].Value);
+                var weight = Convert.ToInt32(collection[2].Value);
+                _process.EditEdge(start, finish, weight);
+                painBox.Refresh();
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Graf.Executors
         public int Weight
         {
             get;
+            set;
         }
         private Point _startPoint;
         private Point _finishPoint;
