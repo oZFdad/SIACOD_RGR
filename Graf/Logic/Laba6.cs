@@ -1,5 +1,4 @@
 ﻿using Graf.Executors;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Graf.Algoritms;
@@ -33,6 +32,7 @@ namespace Graf.Logic
                     if (matrix[i, j] == 0)
                     {
                         matrix[i, j] = 999999999;
+                        copyMatrix[i, j] = 999999999;
                     }
                 }
             }
@@ -69,14 +69,17 @@ namespace Graf.Logic
             var s = matrix[start, finish];
             while (s > 0)
             {
-                for (var i = 0; i < matrix.GetLength(0); i++)
+                for (var i = 0; i < copyMatrix.GetLength(0); i++)
                 {
-                    if (s - copyMatrix[i, finish] == matrix[start, i] && i != finish && start != finish)
+                    if (copyMatrix[i, finish] < 10000)
                     {
-                        s -= copyMatrix[i, finish];
-                        vertexList.Add(finish + 1);
-                        finish = i;
-                        break;
+                        if (s - copyMatrix[i, finish] == matrix[start, i])
+                        {
+                            s -= copyMatrix[i, finish];
+                            vertexList.Add(finish + 1);
+                            finish = i;
+                            break;
+                        }
                     }
                 }
             }
@@ -84,11 +87,6 @@ namespace Graf.Logic
             vertexList.Add(start + 1);
             vertexList.Reverse();
 
-            /*foreach (var i in vertexList)
-            {
-                _result += $"{Convert.ToString(i)} ";
-            }*/
-            
             var edgeList = new List<Edge>();
             for (var i = 0; i < vertexList.Count - 1; i++)
             {
