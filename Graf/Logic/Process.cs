@@ -70,9 +70,17 @@ namespace Graf.Logic
             {
                 _ex = new RGR(_graf);
             }
-            if (checkEx.Laba4)
+            if (checkEx.Laba4BFS)
             {
-                _ex = new Laba4(_mainDrawer, _graf);
+                _ex = new Laba4BFS(_mainDrawer, _graf);
+                if (_mainDrawer.GetCheckedVetex() < 0)
+                {
+                    return;
+                }
+            }
+            if (checkEx.Laba4DFS)
+            {
+                _ex = new Laba4DFS(_mainDrawer, _graf);
                 if (_mainDrawer.GetCheckedVetex() < 0)
                 {
                     return;

@@ -41,6 +41,7 @@
             this.StartColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FinishColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WeihtColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rbLaba4DFS = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize) (this.painBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.dgwDej)).BeginInit();
             this.SuspendLayout();
@@ -71,7 +72,7 @@
             // rbLaba4
             // 
             this.rbLaba4.AutoSize = true;
-            this.rbLaba4.Location = new System.Drawing.Point(16, 54);
+            this.rbLaba4.Location = new System.Drawing.Point(16, 77);
             this.rbLaba4.Name = "rbLaba4";
             this.rbLaba4.Size = new System.Drawing.Size(144, 17);
             this.rbLaba4.TabIndex = 4;
@@ -83,7 +84,7 @@
             // rbLaba5
             // 
             this.rbLaba5.AutoSize = true;
-            this.rbLaba5.Location = new System.Drawing.Point(16, 77);
+            this.rbLaba5.Location = new System.Drawing.Point(16, 100);
             this.rbLaba5.Name = "rbLaba5";
             this.rbLaba5.Size = new System.Drawing.Size(133, 17);
             this.rbLaba5.TabIndex = 5;
@@ -95,7 +96,7 @@
             // rbLaba6
             // 
             this.rbLaba6.AutoSize = true;
-            this.rbLaba6.Location = new System.Drawing.Point(16, 100);
+            this.rbLaba6.Location = new System.Drawing.Point(16, 123);
             this.rbLaba6.Name = "rbLaba6";
             this.rbLaba6.Size = new System.Drawing.Size(119, 17);
             this.rbLaba6.TabIndex = 6;
@@ -115,7 +116,7 @@
             // 
             // btDoAlgoritm
             // 
-            this.btDoAlgoritm.Location = new System.Drawing.Point(16, 134);
+            this.btDoAlgoritm.Location = new System.Drawing.Point(13, 146);
             this.btDoAlgoritm.Name = "btDoAlgoritm";
             this.btDoAlgoritm.Size = new System.Drawing.Size(144, 23);
             this.btDoAlgoritm.TabIndex = 8;
@@ -126,7 +127,7 @@
             // lbResalt
             // 
             this.lbResalt.AutoSize = true;
-            this.lbResalt.Location = new System.Drawing.Point(12, 181);
+            this.lbResalt.Location = new System.Drawing.Point(13, 172);
             this.lbResalt.MaximumSize = new System.Drawing.Size(200, 350);
             this.lbResalt.Name = "lbResalt";
             this.lbResalt.Size = new System.Drawing.Size(194, 26);
@@ -142,10 +143,10 @@
             this.dgwDej.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgwDej.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwDej.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {this.StartColumn, this.FinishColumn, this.WeihtColumn});
-            this.dgwDej.Location = new System.Drawing.Point(12, 210);
+            this.dgwDej.Location = new System.Drawing.Point(12, 223);
             this.dgwDej.Name = "dgwDej";
             this.dgwDej.RowHeadersWidth = 40;
-            this.dgwDej.Size = new System.Drawing.Size(219, 228);
+            this.dgwDej.Size = new System.Drawing.Size(219, 215);
             this.dgwDej.TabIndex = 10;
             this.dgwDej.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwDej_CellValueChanged);
             // 
@@ -172,11 +173,24 @@
             this.WeihtColumn.Name = "WeihtColumn";
             this.WeihtColumn.Width = 66;
             // 
+            // rbLaba4DFS
+            // 
+            this.rbLaba4DFS.AutoSize = true;
+            this.rbLaba4DFS.Location = new System.Drawing.Point(16, 54);
+            this.rbLaba4DFS.Name = "rbLaba4DFS";
+            this.rbLaba4DFS.Size = new System.Drawing.Size(146, 17);
+            this.rbLaba4DFS.TabIndex = 11;
+            this.rbLaba4DFS.TabStop = true;
+            this.rbLaba4DFS.Text = "ЛР №4 Поиск в глубину";
+            this.rbLaba4DFS.UseVisualStyleBackColor = true;
+            this.rbLaba4DFS.CheckedChanged += new System.EventHandler(this.rbLaba4DFS_CheckedChanged);
+            // 
             // WorkWithGraf
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.rbLaba4DFS);
             this.Controls.Add(this.dgwDej);
             this.Controls.Add(this.lbResalt);
             this.Controls.Add(this.btDoAlgoritm);
@@ -202,6 +216,7 @@
         private System.Windows.Forms.Label lbResalt;
         private System.Windows.Forms.PictureBox painBox;
         private System.Windows.Forms.RadioButton rbLaba4;
+        private System.Windows.Forms.RadioButton rbLaba4DFS;
         private System.Windows.Forms.RadioButton rbLaba5;
         private System.Windows.Forms.RadioButton rbLaba6;
         private System.Windows.Forms.RadioButton rbRGR;

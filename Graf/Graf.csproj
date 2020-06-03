@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Algoritms\BFS.cs" />
     <Compile Include="Algoritms\ConvertToMatrix.cs" />
+    <Compile Include="Algoritms\DFS.cs" />
     <Compile Include="Algoritms\Floyd.cs" />
     <Compile Include="Executors\CircleDrawer.cs" />
     <Compile Include="Executors\LineDrawer.cs" />
@@ -49,7 +50,8 @@
     <Compile Include="Graf\Graf.cs" />
     <Compile Include="Graf\Vertex.cs" />
     <Compile Include="Logic\IMission.cs" />
-    <Compile Include="Logic\Laba4.cs" />
+    <Compile Include="Logic\Laba4BFS.cs" />
+    <Compile Include="Logic\Laba4DFS.cs" />
     <Compile Include="Logic\Laba5.cs" />
     <Compile Include="Logic\Laba6.cs" />
     <Compile Include="Logic\Process.cs" />

@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace Graf.Logic
 {
-    class Laba4 : IMission
+    class Laba4BFS : IMission
     {
         private MainDrawer _mainDrawer;
         private Graf _graf;
         private List<int> _vetexNumList;
 
-        public Laba4(MainDrawer mainDrawer, Graf graf)
+        public Laba4BFS(MainDrawer mainDrawer, Graf graf)
         {
             _mainDrawer = mainDrawer;
             _graf = graf;
@@ -21,12 +21,15 @@ namespace Graf.Logic
             var bfs = new BFS(_graf);
             bfs.ApplyAlgoritm(_mainDrawer.GetCheckedVetex());
             _vetexNumList = bfs.CheckList;
-            _mainDrawer.TimingDraw(bfs.EdgeList);
+            if (bfs.EdgeList.Count != 0)
+            {
+                _mainDrawer.TimingDraw(bfs.EdgeList);
+            }
         }
 
         public string GetListWithResalts()
         {
-            if (_vetexNumList.Count == 0)
+            if (_vetexNumList.Count < 2)
             {
                 return "Не корректные условия";
             }

@@ -16,7 +16,7 @@ namespace SIACOD_RGR_mk1
         public WorkWithGraf()
         {
             InitializeComponent();
-            rbLaba6.Checked = true;
+            rbLaba4DFS.Checked = true;
         }
 
         private void ShowResult()
@@ -78,7 +78,8 @@ namespace SIACOD_RGR_mk1
             _process.DoAlgoritm(new CheckEx
             {
                 RGR = rbRGR.Checked,
-                Laba4 = rbLaba4.Checked,
+                Laba4BFS = rbLaba4.Checked,
+                Laba4DFS = rbLaba4DFS.Checked,
                 Laba5 = rbLaba5.Checked,
                 Laba6 = rbLaba6.Checked
             });
@@ -93,6 +94,12 @@ namespace SIACOD_RGR_mk1
         {
             Clear();
         }
+        
+        private void rbLaba4DFS_CheckedChanged(object sender, EventArgs e)
+        {
+            Clear();
+        }
+        
         private void rbLaba5_CheckedChanged(object sender, EventArgs e)
         {
             Clear();
@@ -139,5 +146,7 @@ namespace SIACOD_RGR_mk1
                 painBox.Refresh();
             }
         }
+
+        
     }
 }
