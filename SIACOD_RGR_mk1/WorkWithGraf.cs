@@ -16,7 +16,7 @@ namespace SIACOD_RGR_mk1
         public WorkWithGraf()
         {
             InitializeComponent();
-            rbLaba4DFS.Checked = true;
+            rbRGR.Checked = true;
         }
 
         private void ShowResult()

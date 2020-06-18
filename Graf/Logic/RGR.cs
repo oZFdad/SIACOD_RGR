@@ -17,17 +17,21 @@ namespace Graf.Logic
 
         public void DoIt()
         {
-            var floyd = new Floyd(_graf);
-            var matrix = floyd.Matrix;
-            for(var i = 0; i < matrix.GetLength(0); i++)
+            var warhall = new Warshall(_graf);
+            var testMatrix = warhall.Matrix;
+            for(var i = 0; i < testMatrix.GetLength(0); i++)
             {
-                for (var j = 0; j < matrix.GetLength(0); j++)
+                for (var j = 0; j < testMatrix.GetLength(0); j++)
                 {
-                    if(matrix[i, j] == 99999999)
+                    if (i == j)
+                    {
+                        continue;
+                    }
+                    if(!testMatrix[i, j])
                     {
                         break;
                     }
-                    if (j == matrix.GetLength(0) - 1)
+                    if (j == testMatrix.GetLength(0) - 1)
                     {
                         _listNumVertex.Add(Convert.ToString(i + 1));
                     }

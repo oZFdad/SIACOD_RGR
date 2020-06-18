@@ -43,6 +43,7 @@
     <Compile Include="Algoritms\ConvertToMatrix.cs" />
     <Compile Include="Algoritms\DFS.cs" />
     <Compile Include="Algoritms\Floyd.cs" />
+    <Compile Include="Algoritms\Warshall.cs" />
     <Compile Include="Executors\CircleDrawer.cs" />
     <Compile Include="Executors\LineDrawer.cs" />
     <Compile Include="Executors\MainDrawer.cs" />

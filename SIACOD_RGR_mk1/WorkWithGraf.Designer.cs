@@ -98,10 +98,10 @@
             this.rbLaba6.AutoSize = true;
             this.rbLaba6.Location = new System.Drawing.Point(16, 123);
             this.rbLaba6.Name = "rbLaba6";
-            this.rbLaba6.Size = new System.Drawing.Size(119, 17);
+            this.rbLaba6.Size = new System.Drawing.Size(113, 17);
             this.rbLaba6.TabIndex = 6;
             this.rbLaba6.TabStop = true;
-            this.rbLaba6.Text = "ЛР №6 - Дейкстра";
+            this.rbLaba6.Text = "ЛР №6 Дейкстра";
             this.rbLaba6.UseVisualStyleBackColor = true;
             this.rbLaba6.CheckedChanged += new System.EventHandler(this.rbLaba6_CheckedChanged);
             // 
@@ -201,7 +201,7 @@
             this.Controls.Add(this.rbRGR);
             this.Controls.Add(this.painBox);
             this.Name = "WorkWithGraf";
-            this.Text = "Form1";
+            this.Text = "Дадонов Павел МО-218 РГР, ЛР № 4,5,6";
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.WorkWithGraf_MouseDoubleClick);
             ((System.ComponentModel.ISupportInitialize) (this.painBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.dgwDej)).EndInit();
