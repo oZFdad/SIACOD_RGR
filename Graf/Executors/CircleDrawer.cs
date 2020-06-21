@@ -7,7 +7,7 @@ namespace Graf.Executors
     {
         private int _number;
         private Point _point;
-        private int _r = 30;
+        private int _r = 20;
         private bool _check = false;
 
         internal Point Point

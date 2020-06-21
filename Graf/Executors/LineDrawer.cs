@@ -30,7 +30,7 @@ namespace Graf.Executors
             var pen = new Pen(Color.Green);
             if (data.CheckEdgeRoute)
             {
-                pen = new Pen(Color.Green, 5);
+                pen = new Pen(Color.Green, 10);
                 pen.EndCap = LineCap.ArrowAnchor;
             }
             data.FormGraphics.DrawLine(pen, _startPoint, _finishPoint);
